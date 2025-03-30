@@ -21,7 +21,8 @@ pip install pillow
 ```
 # A simple verification
 After all packages are set, you could run the script `TheuseofViT.py` to see if everingthing is OK. \
-If you directly run this script, you will get a two dimensional tensor whose first dimension has only one element and second dimension has 1000 elements, which is obviously inconsistent with our task: trying to deal with CIFAR-10, where only ten classes exist. What's more, if you use an evaluation script to evaluate the model accuracy on CIFAR-10, you will find the result is no more accurate than direct guessing. Here, we provide a evaluation script `Evaluation-ViT-on-CIFAR-10.py`. \
+If you directly run this script, you will get a two dimensional tensor whose first dimension has only one element and second dimension has 1000 elements, which is obviously inconsistent with our task: trying to deal with CIFAR-10, where only ten classes exist. What's more, if you use an evaluation script to evaluate the model accuracy on CIFAR-10, you will find the result is no more accurate than direct guessing. Here, we provide a evaluation script `Evaluation-ViT-on-CIFAR-10.py`. 
+# The construction of concept "fine-tune"
 Then, if you think deeper, you will come up with an idea that training a neural netwrok as a classifier for ViT model, which could map the 1000 classes to the 10 classes in CIFAR-10. \
 Knowing all that, you may try to convince yourself building a neural network following the same old story like instantiating a `nn.Module` class, difining linear layers, activatiion layers, balabalabala $\cdots$. However, in nowadays, developing is much more simpler. In the model ViT provided by google, it contains a classifer inside itself and all you need to do is to assigning the parameter `num_labels` when instantiating the model. For example:
 ```
