@@ -9,16 +9,18 @@ from torchvision.transforms import Compose, Normalize, ToTensor, Resize
 from sklearn.metrics import accuracy_score
 from PIL import Image
 
+# 处理 ViT 的 Attention Scores
 processor = AttentionScoreProcessor("/224015062/ViT")
 all_attention_scores = processor.get_attention_scores("/224015062/ViT/test_batch")
 
+# 从 pickle 文件中加载数据（CIFAR-10 数据集）
 def unpickle(file):
     with open(file, 'rb') as f:
         batch = pickle.load(f, encoding='bytes')
     # Unpack data
     images = batch[b'data']
     labels = batch[b'labels']
-    images = images.reshape(-1, 3, 32, 32).transpose(0, 2, 3, 1)
+    images = images.reshape(-1, 3, 32, 32).transpose(0, 2, 3, 1)          # 调整图像形状，使其符合输入要求（CIFAR-10 图像的形状是 32x32）
     return images, labels
 
 inference_images, inference_labels = unpickle("/224015062/ViT/test_batch")
