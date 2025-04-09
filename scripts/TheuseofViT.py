@@ -1,7 +1,7 @@
 from transformers import AutoImageProcessor, AutoModelForImageClassification
 from PIL import Image
 
-image_path = '/224015062/ViT/airplane10.png'
+image_path = 'C:\\Users\\28378\Desktop\Fine-tune-ViT\scripts\zooparty.png'
 image = Image.open(image_path)
 
 processor = AutoImageProcessor.from_pretrained("google/vit-base-patch16-384")
